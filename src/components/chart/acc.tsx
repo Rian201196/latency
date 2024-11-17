@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 
 interface DataPoint {
@@ -8,18 +8,67 @@ interface DataPoint {
   value: number;
 }
 
-// Sample data - replace with your actual data
-const sampleData: DataPoint[] = [
-  { label: 'January', value: 65 },
-  { label: 'February', value: 59 },
-  { label: 'March', value: 80 },
-  { label: 'April', value: 81 },
-  { label: 'May', value: 56 },
-];
+// Definisi warna untuk setiap kategori
+const LATENCY_COLORS: { [key: string]: string } = {
+  't < 2s': '#00A651',     // Hijau (tercepat)
+  't < 5s': '#FFF200',     // Kuning
+  't < 15s': '#F7941D',    // Oranye
+  't < 1m': '#ED1C24',     // Merah
+  't < 15m': '#662D91',    // Ungu
+  'OFF': '#231F20'         // Hitam
+};
 
-const BarChart = () => {
+// Definisikan urutan label
+const LABEL_ORDER = ['t < 2s', 't < 5s', 't < 15s', 't < 1m', 't < 15m', 'OFF'];
+
+const categorizeLatency = (latency: number | null): string => {
+  if (latency === null) return 'OFF';
+  if (latency < 2) return 't < 2s';
+  if (latency < 5) return 't < 5s';
+  if (latency < 15) return 't < 15s';
+  if (latency < 60) return 't < 1m';
+  if (latency < 900) return 't < 15m';
+  return 'OFF';
+};
+
+const BarChart: React.FC = () => {
   const chartRef = useRef<HTMLCanvasElement | null>(null);
   const chartInstance = useRef<Chart | null>(null);
+  const [dataPoints, setDataPoints] = useState<DataPoint[]>([]);
+
+  useEffect(() => {
+    const fetchSensors = async () => {
+      try {
+        const response = await fetch('/api/sensors');
+        const data = await response.json();
+
+        // Filter hanya untuk Kategori Accelerograph
+        const accelerographSensors = data.filter((sensor: any) => 
+          sensor.Kategori === 'Accelerograph'
+        );
+
+        // Kategorisasi last_latency untuk Accelerograph
+        const categorizedData: { [key: string]: number } = {};
+        
+        accelerographSensors.forEach((sensor: any) => {
+          const category = categorizeLatency(sensor.Last_latency);
+          categorizedData[category] = (categorizedData[category] || 0) + 1;
+        });
+
+        // Konversi ke array DataPoint sesuai urutan yang diinginkan
+        const formattedDataPoints: DataPoint[] = LABEL_ORDER.map(label => ({
+          label,
+          value: categorizedData[label] || 0, // Jika tidak ada data, set value ke 0
+        }));
+
+        setDataPoints(formattedDataPoints);
+      } catch (error) {
+        console.error('Error fetching sensors:', error);
+      }
+    };
+
+    fetchSensors();
+  }, []);
 
   useEffect(() => {
     if (!chartRef.current) return;
@@ -36,30 +85,33 @@ const BarChart = () => {
     chartInstance.current = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: sampleData.map(d => d.label),
+        labels: dataPoints.map(d => d.label),
         datasets: [{
-          label: 'Monthly Data',
-          data: sampleData.map(d => d.value),
-          backgroundColor: 'rgba(54, 162, 235, 0.8)',
-          borderColor: 'rgba(54, 162, 235, 1)',
+          label: 'Jumlah',
+          data: dataPoints.map(d => d.value),
+          backgroundColor: dataPoints.map(d => LATENCY_COLORS[d.label] || 'rgba(54, 162, 235, 0.8)'),
+          borderColor: dataPoints.map(d => LATENCY_COLORS[d.label] || 'rgba(54, 162, 235, 1)'),
           borderWidth: 1
         }]
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: false, 
         plugins: {
           legend: {
-            position: 'top',
+            display: false, // Menonaktifkan legenda
           },
           title: {
             display: true,
-            text: 'Monthly Statistics'
+            text: 'Latency Sensor Accelerograph '
           }
         },
         scales: {
           y: {
-            beginAtZero: true
+            beginAtZero: true,
+            ticks: {
+              stepSize: 10 // Jeda antar nilai
+            }
           }
         }
       }
@@ -71,11 +123,11 @@ const BarChart = () => {
         chartInstance.current.destroy();
       }
     };
-  }, []); // Empty dependency array means this effect runs once on mount
+  }, [dataPoints]); 
 
   return (
-    <div id="acc" className="sm:col-span-3 sm:row-span-3 min-h-[100px] rounded-lg bg-white opacity-90">
-      <canvas ref={chartRef} />
+    <div className="relative sm:col-span-3 sm:row-span-3 min-h-[100px] h-full rounded-lg bg-white opacity-90">
+      <canvas ref={chartRef} className="w-full h-full" />
     </div>
   );
 };

@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,17 +8,3665 @@ datasource db {
 }
 
 model Sensor {
-  sensor_id     Int      @id @default(autoincrement())
-  kode           String
-  nama           String
-  lat            Float
-  long           Float
-  kota           String
-  provinsi       String
-  tipe           String
-  kategori       String
-  upt            String
-  last_latency   String?  // NULLABLE
-  status         String?  // NULLABLE
-  created_at     DateTime @default(now())
+  sensor_id     Int             @id @default(autoincrement())
+  Kode          String?         @db.VarChar(255)
+  Nama          String?         @db.VarChar(255)
+  Lat           Decimal?        @db.Decimal(10, 6)
+  Long          Decimal?        @db.Decimal(10, 6)
+  Kota          String?         @db.VarChar(255)
+  Provinsi      String?         @db.VarChar(255)
+  Tipe          String?         @db.VarChar(255)
+  Kategori      String?         @db.VarChar(255)
+  UPT           String?         @db.VarChar(255)
+  Last_latency  Float?          @db.Float
+  Status        Float?          @db.Float
+  created_at    DateTime?       @default(now()) @db.Timestamp(0)
+  latency_ACBM  latency_ACBM[]
+  latency_ACJM  latency_ACJM[]
+  latency_AMGI  latency_AMGI[]
+  latency_ASJR  latency_ASJR[]
+  latency_BACE  latency_BACE[]
+  latency_BALB  latency_BALB[]
+  latency_BALE  latency_BALE[]
+  latency_BBJI  latency_BBJI[]
+  latency_BBJN  latency_BBJN[]
+  latency_BBSR  latency_BBSR[]
+  latency_BKJI  latency_BKJI[]
+  latency_BLJR  latency_BLJR[]
+  latency_BSJR  latency_BSJR[]
+  latency_CBJI  latency_CBJI[]
+  latency_CBJM  latency_CBJM[]
+  latency_CBJN  latency_CBJN[]
+  latency_CBJR  latency_CBJR[]
+  latency_CCJM  latency_CCJM[]
+  latency_CCJR  latency_CCJR[]
+  latency_CCSR  latency_CCSR[]
+  latency_CGJI  latency_CGJI[]
+  latency_CGJR  latency_CGJR[]
+  latency_CIJI  latency_CIJI[]
+  latency_CIJM  latency_CIJM[]
+  latency_CIKJI latency_CIKJI[]
+  latency_CILJI latency_CILJI[]
+  latency_CLJO  latency_CLJO[]
+  latency_CLJR  latency_CLJR[]
+  latency_CMJI  latency_CMJI[]
+  latency_CMJN  latency_CMJN[]
+  latency_CNJI  latency_CNJI[]
+  latency_CPJR  latency_CPJR[]
+  latency_CSBJI latency_CSBJI[]
+  latency_CSJI  latency_CSJI[]
+  latency_CSJM  latency_CSJM[]
+  latency_CSJR  latency_CSJR[]
+  latency_CWJM  latency_CWJM[]
+  latency_DBJI  latency_DBJI[]
+  latency_DSJR  latency_DSJR[]
+  latency_ESJR  latency_ESJR[]
+  latency_GBJO  latency_GBJO[]
+  latency_GBJR  latency_GBJR[]
+  latency_GCJR  latency_GCJR[]
+  latency_GTJN  latency_GTJN[]
+  latency_IBJN  latency_IBJN[]
+  latency_ILSN  latency_ILSN[]
+  latency_JABI  latency_JABI[]
+  latency_JACE  latency_JACE[]
+  latency_JAKO  latency_JAKO[]
+  latency_JAPE  latency_JAPE[]
+  latency_JARU  latency_JARU[]
+  latency_JATA  latency_JATA[]
+  latency_JAUI  latency_JAUI[]
+  latency_JBJI  latency_JBJI[]
+  latency_JCJI  latency_JCJI[]
+  latency_JPJI  latency_JPJI[]
+  latency_JSJR  latency_JSJR[]
+  latency_JTJM  latency_JTJM[]
+  latency_KCJR  latency_KCJR[]
+  latency_KJJR  latency_KJJR[]
+  latency_KKJN  latency_KKJN[]
+  latency_KLI   latency_KLI[]
+  latency_KLSI  latency_KLSI[]
+  latency_KPSR  latency_KPSR[]
+  latency_KSJR  latency_KSJR[]
+  latency_KTSR  latency_KTSR[]
+  latency_LATA  latency_LATA[]
+  latency_LBJN  latency_LBJN[]
+  latency_LCJR  latency_LCJR[]
+  latency_LESM  latency_LESM[]
+  latency_LLSM  latency_LLSM[]
+  latency_LPJR  latency_LPJR[]
+  latency_LSJR  latency_LSJR[]
+  latency_MGJR  latency_MGJR[]
+  latency_MLJN  latency_MLJN[]
+  latency_MLJR  latency_MLJR[]
+  latency_MLSN  latency_MLSN[]
+  latency_N1PJJ latency_N1PJJ[]
+  latency_N2PJJ latency_N2PJJ[]
+  latency_N3PJJ latency_N3PJJ[]
+  latency_NATBJ latency_NATBJ[]
+  latency_NBCBJ latency_NBCBJ[]
+  latency_NBD01 latency_NBD01[]
+  latency_NBD02 latency_NBD02[]
+  latency_NBD03 latency_NBD03[]
+  latency_NBD04 latency_NBD04[]
+  latency_NBD05 latency_NBD05[]
+  latency_NBD06 latency_NBD06[]
+  latency_NBD07 latency_NBD07[]
+  latency_NBD08 latency_NBD08[]
+  latency_NBD09 latency_NBD09[]
+  latency_NBD10 latency_NBD10[]
+  latency_NBD11 latency_NBD11[]
+  latency_NBD12 latency_NBD12[]
+  latency_NBD13 latency_NBD13[]
+  latency_NBD14 latency_NBD14[]
+  latency_NBD15 latency_NBD15[]
+  latency_NBD16 latency_NBD16[]
+  latency_NBD18 latency_NBD18[]
+  latency_NBD19 latency_NBD19[]
+  latency_NBD20 latency_NBD20[]
+  latency_NBD21 latency_NBD21[]
+  latency_NBG01 latency_NBG01[]
+  latency_NBG02 latency_NBG02[]
+  latency_NBG03 latency_NBG03[]
+  latency_NBG04 latency_NBG04[]
+  latency_NBG05 latency_NBG05[]
+  latency_NBG06 latency_NBG06[]
+  latency_NBG07 latency_NBG07[]
+  latency_NBG08 latency_NBG08[]
+  latency_NBG09 latency_NBG09[]
+  latency_NBG10 latency_NBG10[]
+  latency_NBG11 latency_NBG11[]
+  latency_NBG12 latency_NBG12[]
+  latency_NBG13 latency_NBG13[]
+  latency_NBG14 latency_NBG14[]
+  latency_NBG15 latency_NBG15[]
+  latency_NBG16 latency_NBG16[]
+  latency_NBK01 latency_NBK01[]
+  latency_NBK02 latency_NBK02[]
+  latency_NBK03 latency_NBK03[]
+  latency_NBK04 latency_NBK04[]
+  latency_NBK05 latency_NBK05[]
+  latency_NBK06 latency_NBK06[]
+  latency_NBK08 latency_NBK08[]
+  latency_NCJ01 latency_NCJ01[]
+  latency_NCJ02 latency_NCJ02[]
+  latency_NCJ03 latency_NCJ03[]
+  latency_NCJ04 latency_NCJ04[]
+  latency_NCJ05 latency_NCJ05[]
+  latency_NCJ06 latency_NCJ06[]
+  latency_NCJ07 latency_NCJ07[]
+  latency_NCJ08 latency_NCJ08[]
+  latency_NCJ09 latency_NCJ09[]
+  latency_NCJ10 latency_NCJ10[]
+  latency_NCJ11 latency_NCJ11[]
+  latency_NCJ12 latency_NCJ12[]
+  latency_NCJ13 latency_NCJ13[]
+  latency_NCJ14 latency_NCJ14[]
+  latency_NCJ15 latency_NCJ15[]
+  latency_NCJ16 latency_NCJ16[]
+  latency_NCL01 latency_NCL01[]
+  latency_NCL02 latency_NCL02[]
+  latency_NCL03 latency_NCL03[]
+  latency_NCL04 latency_NCL04[]
+  latency_NDP01 latency_NDP01[]
+  latency_NDP02 latency_NDP02[]
+  latency_NDP03 latency_NDP03[]
+  latency_NDP04 latency_NDP04[]
+  latency_NDP05 latency_NDP05[]
+  latency_NGBBJ latency_NGBBJ[]
+  latency_NGLLS latency_NGLLS[]
+  latency_NGTBJ latency_NGTBJ[]
+  latency_NJB01 latency_NJB01[]
+  latency_NJB02 latency_NJB02[]
+  latency_NJB03 latency_NJB03[]
+  latency_NJB04 latency_NJB04[]
+  latency_NJP01 latency_NJP01[]
+  latency_NJP02 latency_NJP02[]
+  latency_NJP03 latency_NJP03[]
+  latency_NJP04 latency_NJP04[]
+  latency_NJP05 latency_NJP05[]
+  latency_NJP06 latency_NJP06[]
+  latency_NJP07 latency_NJP07[]
+  latency_NJS01 latency_NJS01[]
+  latency_NJS02 latency_NJS02[]
+  latency_NJS03 latency_NJS03[]
+  latency_NJS04 latency_NJS04[]
+  latency_NJS05 latency_NJS05[]
+  latency_NJS06 latency_NJS06[]
+  latency_NJS07 latency_NJS07[]
+  latency_NJS08 latency_NJS08[]
+  latency_NJS09 latency_NJS09[]
+  latency_NJS10 latency_NJS10[]
+  latency_NJS11 latency_NJS11[]
+  latency_NJT01 latency_NJT01[]
+  latency_NJT02 latency_NJT02[]
+  latency_NJT03 latency_NJT03[]
+  latency_NJT04 latency_NJT04[]
+  latency_NJT05 latency_NJT05[]
+  latency_NJT06 latency_NJT06[]
+  latency_NJT07 latency_NJT07[]
+  latency_NJT08 latency_NJT08[]
+  latency_NJT09 latency_NJT09[]
+  latency_NJT10 latency_NJT10[]
+  latency_NJT11 latency_NJT11[]
+  latency_NJU01 latency_NJU01[]
+  latency_NJU02 latency_NJU02[]
+  latency_NJU03 latency_NJU03[]
+  latency_NJU04 latency_NJU04[]
+  latency_NJU05 latency_NJU05[]
+  latency_NJU06 latency_NJU06[]
+  latency_NJU07 latency_NJU07[]
+  latency_NKBBJ latency_NKBBJ[]
+  latency_NKLLS latency_NKLLS[]
+  latency_NKR04 latency_NKR04[]
+  latency_NKR05 latency_NKR05[]
+  latency_NKR06 latency_NKR06[]
+  latency_NKR07 latency_NKR07[]
+  latency_NLB01 latency_NLB01[]
+  latency_NLB02 latency_NLB02[]
+  latency_NLB03 latency_NLB03[]
+  latency_NLB04 latency_NLB04[]
+  latency_NLB05 latency_NLB05[]
+  latency_NLB06 latency_NLB06[]
+  latency_NLB07 latency_NLB07[]
+  latency_NLB08 latency_NLB08[]
+  latency_NLB09 latency_NLB09[]
+  latency_NLB10 latency_NLB10[]
+  latency_NLB11 latency_NLB11[]
+  latency_NLB12 latency_NLB12[]
+  latency_NLB13 latency_NLB13[]
+  latency_NLB14 latency_NLB14[]
+  latency_NLB15 latency_NLB15[]
+  latency_NMBBJ latency_NMBBJ[]
+  latency_NMSBJ latency_NMSBJ[]
+  latency_NMTBJ latency_NMTBJ[]
+  latency_NOBBJ latency_NOBBJ[]
+  latency_NOLLS latency_NOLLS[]
+  latency_NOPBJ latency_NOPBJ[]
+  latency_NPG01 latency_NPG01[]
+  latency_NPG02 latency_NPG02[]
+  latency_NPG03 latency_NPG03[]
+  latency_NPG04 latency_NPG04[]
+  latency_NPG05 latency_NPG05[]
+  latency_NPG06 latency_NPG06[]
+  latency_NPG07 latency_NPG07[]
+  latency_NPG08 latency_NPG08[]
+  latency_NPW01 latency_NPW01[]
+  latency_NPW02 latency_NPW02[]
+  latency_NPW03 latency_NPW03[]
+  latency_NSK01 latency_NSK01[]
+  latency_NSK02 latency_NSK02[]
+  latency_NSK03 latency_NSK03[]
+  latency_NSK04 latency_NSK04[]
+  latency_NSK05 latency_NSK05[]
+  latency_NSK06 latency_NSK06[]
+  latency_NSK07 latency_NSK07[]
+  latency_NSK08 latency_NSK08[]
+  latency_NSK09 latency_NSK09[]
+  latency_NSK10 latency_NSK10[]
+  latency_NSK11 latency_NSK11[]
+  latency_NSK12 latency_NSK12[]
+  latency_NSK13 latency_NSK13[]
+  latency_NSR01 latency_NSR01[]
+  latency_NSR02 latency_NSR02[]
+  latency_NSR03 latency_NSR03[]
+  latency_NSR04 latency_NSR04[]
+  latency_NSR05 latency_NSR05[]
+  latency_NSR06 latency_NSR06[]
+  latency_NSU02 latency_NSU02[]
+  latency_NSU03 latency_NSU03[]
+  latency_NSU04 latency_NSU04[]
+  latency_NSU05 latency_NSU05[]
+  latency_NSU06 latency_NSU06[]
+  latency_NTG01 latency_NTG01[]
+  latency_NTG02 latency_NTG02[]
+  latency_NTG03 latency_NTG03[]
+  latency_NTG04 latency_NTG04[]
+  latency_NTG05 latency_NTG05[]
+  latency_NTG06 latency_NTG06[]
+  latency_NTG08 latency_NTG08[]
+  latency_NTS01 latency_NTS01[]
+  latency_NTS02 latency_NTS02[]
+  latency_NTS03 latency_NTS03[]
+  latency_NTS04 latency_NTS04[]
+  latency_NTS05 latency_NTS05[]
+  latency_PASJI latency_PASJI[]
+  latency_PBJI  latency_PBJI[]
+  latency_PCJM  latency_PCJM[]
+  latency_PCJR  latency_PCJR[]
+  latency_PGJR  latency_PGJR[]
+  latency_PKJM  latency_PKJM[]
+  latency_PPLI  latency_PPLI[]
+  latency_PPSM  latency_PPSM[]
+  latency_PSJM  latency_PSJM[]
+  latency_PSLI  latency_PSLI[]
+  latency_PSSM  latency_PSSM[]
+  latency_PTJI  latency_PTJI[]
+  latency_PUSI  latency_PUSI[]
+  latency_RLSR  latency_RLSR[]
+  latency_RSJR  latency_RSJR[]
+  latency_SADLY latency_SADLY[]
+  latency_SBJI  latency_SBJI[]
+  latency_SCJM  latency_SCJM[]
+  latency_SCJR  latency_SCJR[]
+  latency_SKJI  latency_SKJI[]
+  latency_SLSN  latency_SLSN[]
+  latency_SPJR  latency_SPJR[]
+  latency_SPSJM latency_SPSJM[]
+  latency_SSJM  latency_SSJM[]
+  latency_SSJR  latency_SSJR[]
+  latency_SUPJI latency_SUPJI[]
+  latency_SUSM  latency_SUSM[]
+  latency_TASE  latency_TASE[]
+  latency_TNGI  latency_TNGI[]
+  latency_TOJI  latency_TOJI[]
+  latency_TPJR  latency_TPJR[]
+  latency_TSJM  latency_TSJM[]
+  latency_TSJN  latency_TSJN[]
+  latency_TSJR  latency_TSJR[]
+  latency_UTSI  latency_UTSI[]
+  latency_WLJI  latency_WLJI[]
+  latency_WSJM  latency_WSJM[]
+}
+
+model latency_ACBM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(1)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_ACBM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_ACJM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(2)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_ACJM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_AMGI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(3)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_AMGI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_ASJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(4)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_ASJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_BACE {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(5)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_BACE_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_BALB {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(6)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_BALB_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_BALE {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(7)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_BALE_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_BBJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(8)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_BBJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_BBJN {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(9)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_BBJN_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_BBSR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(10)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_BBSR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_BKJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(11)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_BKJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_BLJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(12)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_BLJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_BSJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(13)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_BSJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CBJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(14)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CBJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CBJM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(15)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CBJM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CBJN {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(16)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CBJN_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CBJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(17)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CBJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CCJM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(18)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CCJM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CCJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(19)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CCJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CCSR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(20)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CCSR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CGJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(21)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CGJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CGJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(22)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CGJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CIJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(23)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CIJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CIJM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(24)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CIJM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CIKJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(25)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CIKJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CILJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(26)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CILJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CLJO {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(27)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CLJO_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CLJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(28)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CLJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CMJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(29)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CMJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CMJN {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(30)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CMJN_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CNJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(31)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CNJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CPJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(32)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CPJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CSBJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(33)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CSBJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CSJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(34)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CSJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CSJM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(35)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CSJM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CSJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(36)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CSJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_CWJM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(37)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_CWJM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_DBJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(38)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_DBJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_DSJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(39)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_DSJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_ESJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(40)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_ESJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_GBJO {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(41)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_GBJO_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_GBJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(42)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_GBJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_GCJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(43)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_GCJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_GTJN {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(44)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_GTJN_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_IBJN {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(45)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_IBJN_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_ILSN {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(46)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_ILSN_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_JABI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(47)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_JABI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_JACE {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(48)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_JACE_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_JAKO {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(49)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_JAKO_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_JAPE {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(50)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_JAPE_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_JARU {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(51)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_JARU_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_JATA {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(52)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_JATA_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_JAUI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(53)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_JAUI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_JBJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(54)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_JBJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_JCJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(55)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_JCJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_JPJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(56)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_JPJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_JSJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(57)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_JSJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_JTJM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(58)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_JTJM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_KCJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(59)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_KCJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_KJJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(60)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_KJJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_KKJN {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(61)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_KKJN_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_KLI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(62)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_KLI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_KLSI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(63)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_KLSI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_KPSR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(64)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_KPSR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_KSJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(65)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_KSJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_KTSR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(66)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_KTSR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_LATA {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(67)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_LATA_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_LBJN {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(68)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_LBJN_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_LCJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(69)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_LCJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_LESM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(70)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_LESM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_LLSM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(71)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_LLSM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_LPJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(72)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_LPJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_LSJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(73)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_LSJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_MGJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(74)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_MGJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_MLJN {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(75)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_MLJN_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_MLJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(76)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_MLJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_MLSN {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(77)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_MLSN_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_N1PJJ {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(78)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_N1PJJ_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_N2PJJ {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(79)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_N2PJJ_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_N3PJJ {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(80)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_N3PJJ_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NATBJ {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(81)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NATBJ_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBCBJ {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(82)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBCBJ_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(83)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(84)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(85)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(86)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD05 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(87)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD05_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD06 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(88)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD06_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD07 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(89)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD07_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD08 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(90)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD08_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD09 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(91)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD09_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD10 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(92)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD10_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD11 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(93)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD11_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD12 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(94)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD12_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD13 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(95)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD13_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD14 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(96)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD14_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD15 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(97)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD15_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD16 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(98)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD16_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD18 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(99)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD18_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD19 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(100)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD19_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD20 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(101)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD20_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBD21 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(102)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBD21_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBG01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(103)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBG01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBG02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(104)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBG02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBG03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(105)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBG03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBG04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(106)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBG04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBG05 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(107)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBG05_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBG06 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(108)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBG06_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBG07 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(109)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBG07_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBG08 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(110)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBG08_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBG09 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(111)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBG09_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBG10 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(112)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBG10_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBG11 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(113)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBG11_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBG12 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(114)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBG12_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBG13 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(115)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBG13_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBG14 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(116)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBG14_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBG15 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(117)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBG15_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBG16 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(118)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBG16_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBK01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(119)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBK01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBK02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(120)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBK02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBK03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(121)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBK03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBK04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(122)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBK04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBK05 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(123)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBK05_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBK06 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(124)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBK06_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NBK08 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(125)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NBK08_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCJ01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(126)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCJ01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCJ02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(127)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCJ02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCJ03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(128)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCJ03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCJ04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(129)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCJ04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCJ05 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(130)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCJ05_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCJ06 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(131)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCJ06_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCJ07 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(132)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCJ07_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCJ08 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(133)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCJ08_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCJ09 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(134)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCJ09_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCJ10 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(135)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCJ10_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCJ11 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(136)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCJ11_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCJ12 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(137)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCJ12_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCJ13 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(138)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCJ13_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCJ14 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(139)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCJ14_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCJ15 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(140)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCJ15_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCJ16 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(141)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCJ16_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCL01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(142)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCL01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCL02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(143)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCL02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCL03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(144)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCL03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NCL04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(145)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NCL04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NDP01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(146)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NDP01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NDP02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(147)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NDP02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NDP03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(148)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NDP03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NDP04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(149)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NDP04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NDP05 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(150)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NDP05_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NGBBJ {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(151)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NGBBJ_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NGLLS {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(152)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NGLLS_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NGTBJ {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(153)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NGTBJ_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJB01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(154)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJB01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJB02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(155)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJB02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJB03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(156)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJB03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJB04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(157)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJB04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJP01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(158)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJP01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJP02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(159)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJP02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJP03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(160)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJP03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJP04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(161)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJP04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJP05 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(162)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJP05_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJP06 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(163)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJP06_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJP07 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(164)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJP07_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJS01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(165)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJS01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJS02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(166)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJS02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJS03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(167)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJS03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJS04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(168)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJS04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJS05 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(169)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJS05_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJS06 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(170)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJS06_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJS07 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(171)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJS07_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJS08 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(172)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJS08_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJS09 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(173)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJS09_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJS10 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(174)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJS10_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJS11 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(175)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJS11_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJT01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(176)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJT01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJT02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(177)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJT02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJT03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(178)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJT03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJT04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(179)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJT04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJT05 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(180)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJT05_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJT06 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(181)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJT06_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJT07 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(182)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJT07_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJT08 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(183)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJT08_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJT09 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(184)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJT09_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJT10 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(185)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJT10_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJT11 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(186)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJT11_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJU01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(187)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJU01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJU02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(188)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJU02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJU03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(189)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJU03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJU04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(190)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJU04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJU05 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(191)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJU05_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJU06 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(192)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJU06_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NJU07 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(193)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NJU07_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NKBBJ {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(194)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NKBBJ_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NKLLS {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(195)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NKLLS_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NKR04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(196)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NKR04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NKR05 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(197)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NKR05_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NKR06 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(198)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NKR06_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NKR07 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(199)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NKR07_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NLB01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(200)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NLB01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NLB02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(201)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NLB02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NLB03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(202)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NLB03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NLB04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(203)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NLB04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NLB05 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(204)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NLB05_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NLB06 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(205)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NLB06_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NLB07 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(206)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NLB07_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NLB08 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(207)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NLB08_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NLB09 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(208)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NLB09_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NLB10 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(209)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NLB10_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NLB11 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(210)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NLB11_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NLB12 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(211)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NLB12_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NLB13 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(212)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NLB13_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NLB14 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(213)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NLB14_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NLB15 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(214)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NLB15_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NMBBJ {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(215)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NMBBJ_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NMSBJ {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(216)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NMSBJ_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NMTBJ {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(217)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NMTBJ_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NOBBJ {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(218)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NOBBJ_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NOLLS {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(219)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NOLLS_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NOPBJ {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(220)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NOPBJ_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NPG01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(221)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NPG01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NPG02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(222)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NPG02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NPG03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(223)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NPG03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NPG04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(224)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NPG04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NPG05 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(225)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NPG05_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NPG06 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(226)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NPG06_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NPG07 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(227)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NPG07_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NPG08 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(228)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NPG08_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NPW01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(229)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NPW01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NPW02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(230)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NPW02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NPW03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(231)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NPW03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSK01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(232)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSK01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSK02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(233)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSK02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSK03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(234)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSK03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSK04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(235)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSK04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSK05 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(236)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSK05_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSK06 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(237)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSK06_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSK07 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(238)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSK07_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSK08 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(239)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSK08_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSK09 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(240)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSK09_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSK10 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(241)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSK10_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSK11 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(242)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSK11_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSK12 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(243)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSK12_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSK13 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(244)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSK13_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSR01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(245)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSR01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSR02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(246)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSR02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSR03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(247)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSR03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSR04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(248)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSR04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSR05 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(249)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSR05_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSR06 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(250)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSR06_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSU02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(251)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSU02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSU03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(252)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSU03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSU04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(253)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSU04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSU05 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(254)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSU05_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NSU06 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(255)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NSU06_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NTG01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(256)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NTG01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NTG02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(257)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NTG02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NTG03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(258)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NTG03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NTG04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(259)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NTG04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NTG05 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(260)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NTG05_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NTG06 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(261)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NTG06_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NTG08 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(262)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NTG08_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NTS01 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(263)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NTS01_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NTS02 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(264)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NTS02_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NTS03 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(265)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NTS03_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NTS04 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(266)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NTS04_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_NTS05 {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(267)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_NTS05_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_PASJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(268)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_PASJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_PBJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(269)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_PBJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_PCJM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(270)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_PCJM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_PCJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(271)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_PCJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_PGJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(272)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_PGJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_PKJM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(273)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_PKJM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_PPLI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(274)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_PPLI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_PPSM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(275)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_PPSM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_PSJM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(276)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_PSJM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_PSLI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(277)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_PSLI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_PSSM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(278)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_PSSM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_PTJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(279)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_PTJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_PUSI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(280)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_PUSI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_RLSR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(281)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_RLSR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_RSJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(282)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_RSJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_SADLY {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(283)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_SADLY_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_SBJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(284)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_SBJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_SCJM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(285)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_SCJM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_SCJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(286)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_SCJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_SKJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(287)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_SKJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_SLSN {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(288)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_SLSN_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_SPJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(289)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_SPJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_SPSJM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(290)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_SPSJM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_SSJM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(291)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_SSJM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_SSJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(292)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_SSJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_SUPJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(293)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_SUPJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_SUSM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(294)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_SUSM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_TASE {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(295)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_TASE_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_TNGI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(296)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_TNGI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_TOJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(297)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_TOJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_TPJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(298)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_TPJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_TSJM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(299)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_TSJM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_TSJN {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(300)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_TSJN_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_TSJR {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(301)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_TSJR_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_UTSI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(302)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_UTSI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_WLJI {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(303)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_WLJI_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
+}
+
+model latency_WSJM {
+  latency_id Int       @id @default(autoincrement())
+  sensor_id  Int?      @default(304)
+  latency    Float?    @db.Float
+  datatime   DateTime? @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  Sensor     Sensor?   @relation(fields: [sensor_id], references: [sensor_id], onDelete: Cascade, onUpdate: NoAction, map: "latency_WSJM_ibfk_1")
+
+  @@index([sensor_id], map: "sensor_id")
 }
