@@ -1,25 +1,22 @@
 // components/SensorStatus.tsx
 import React, { useEffect, useState } from 'react';
+import { useSensorContext } from '../../pages/context/SensorContext';
+
+interface Sensor {
+    Status: number | null; 
+}
 
 const SensorStatus: React.FC = () => {
-    const [totalStatus, setTotalStatus] = useState<number>(0);
+    const { sensors } = useSensorContext(); 
+    const [totalStatus, setTotalStatus] = useState<number>(1);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('http://localhost:3000/api/sensors'); // Ganti dengan URL API Anda
-                const data = await response.json();
-
-                // Hitung jumlah status yang bernilai 1
-                const count = data.filter((sensor: { Status: number }) => sensor.Status === 1).length;
-                setTotalStatus(count);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
-        fetchData();
-    }, []);
+        if (sensors) {
+            // Count the number of sensors with Status 0
+            const count = sensors.filter((sensor: Sensor) => sensor.Status === 1).length;
+            setTotalStatus(count);
+        }
+    }, [sensors]); 
 
     return (
         <h1 className="font-roboto text-2xl font-bold">{totalStatus}</h1>

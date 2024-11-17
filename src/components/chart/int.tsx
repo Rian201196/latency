@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useSensorContext } from '../../pages/context/SensorContext'; // Import the context hook
 import Chart from 'chart.js/auto';
 
 interface DataPoint {
@@ -8,17 +9,16 @@ interface DataPoint {
   value: number;
 }
 
-// Definisi warna untuk setiap kategori
 const LATENCY_COLORS: { [key: string]: string } = {
-  't < 2s': '#00A651',     // Hijau (tercepat)
-  't < 5s': '#FFF200',     // Kuning
-  't < 15s': '#F7941D',    // Oranye
-  't < 1m': '#ED1C24',     // Merah
-  't < 15m': '#662D91',    // Ungu
-  'OFF': '#231F20'         // Hitam
+  't < 2s': '#00A651',
+  't < 5s': '#FFF200',
+  't < 15s': '#F7941D',
+  't < 1m': '#ED1C24',
+  't < 15m': '#662D91',
+  'OFF': '#231F20'
 };
 
-// Definisikan urutan label
+// Define the order of labels
 const LABEL_ORDER = ['t < 2s', 't < 5s', 't < 15s', 't < 1m', 't < 15m', 'OFF'];
 
 const categorizeLatency = (latency: number | null): string => {
@@ -31,42 +31,32 @@ const categorizeLatency = (latency: number | null): string => {
   return 'OFF';
 };
 
-const BarChart: React.FC = () => {
+const IntChart: React.FC = () => {
   const chartRef = useRef<HTMLCanvasElement | null>(null);
   const chartInstance = useRef<Chart | null>(null);
+  const { sensors } = useSensorContext(); // Get sensors from context
   const [dataPoints, setDataPoints] = useState<DataPoint[]>([]);
 
   useEffect(() => {
-    const fetchSensors = async () => {
-      try {
-        const response = await fetch('/api/sensors');
-        const data = await response.json();
+    if (!sensors) return; // Ensure sensors data is available
 
-        const intensitySensors = data.filter((sensor: any) => 
-          sensor.Kategori === 'Intensitymeter'
-        );
+    const categorizedData: { [key: string]: number } = {};
 
-        const categorizedData: { [key: string]: number } = {};
-        
-        intensitySensors.forEach((sensor: any) => {
-          const category = categorizeLatency(sensor.Last_latency);
-          categorizedData[category] = (categorizedData[category] || 0) + 1;
-        });
-
-        // Konversi ke array DataPoint sesuai urutan yang diinginkan
-        const formattedDataPoints: DataPoint[] = LABEL_ORDER.map(label => ({
-          label,
-          value: categorizedData[label] || 0, // Jika tidak ada data, set value ke 0
-        }));
-
-        setDataPoints(formattedDataPoints);
-      } catch (error) {
-        console.error('Error fetching sensors:', error);
+    sensors.forEach((sensor: any) => {
+      if (sensor.Kategori === 'Intensitymeter') {
+        const category = categorizeLatency(sensor.Last_latency);
+        categorizedData[category] = (categorizedData[category] || 0) + 1;
       }
-    };
+    });
 
-    fetchSensors();
-  }, []);
+    // Convert to DataPoint array according to desired order
+    const formattedDataPoints: DataPoint[] = LABEL_ORDER.map(label => ({
+      label,
+      value: categorizedData[label] || 0, // Set value to 0 if no data
+    }));
+
+    setDataPoints(formattedDataPoints);
+  }, [sensors]); // Run effect when sensors change
 
   useEffect(() => {
     if (!chartRef.current) return;
@@ -94,21 +84,21 @@ const BarChart: React.FC = () => {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false, 
+        maintainAspectRatio: false,
         plugins: {
           legend: {
-            display: false, // Menonaktifkan legenda
+            display: false, // Disable legend
           },
           title: {
             display: true,
-            text: 'Latency Sensor Intensitymeter '
+            text: 'Latency Sensor Intensitymeter'
           }
         },
         scales: {
           y: {
             beginAtZero: true,
             ticks: {
-              stepSize: 10 // Jeda antar nilai
+              stepSize: 1 // Adjust step size for ticks
             }
           }
         }
@@ -121,13 +111,13 @@ const BarChart: React.FC = () => {
         chartInstance.current.destroy();
       }
     };
-  }, [dataPoints]); 
+  }, [dataPoints]); // Run effect when dataPoints change
 
   return (
-    <div className="relative sm:col-span-3 sm:row-span-3 min-h-[100px] h-full rounded-lg bg-white opacity-90">
+    <div className="relative sm:col-span-3 sm:row-span -3 min-h-[100px] h-full rounded-lg bg-white opacity-90">
       <canvas ref={chartRef} className="w-full h-full" />
     </div>
   );
 };
 
-export default BarChart;
+export default IntChart;

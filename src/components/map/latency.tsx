@@ -1,24 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { useSensorContext } from '../../pages/context/SensorContext'; // Import the context hook
 
-// Tipe untuk data sensor
-interface Sensor {
-  sensor_id: number;
-  Kode: string;
-  Nama: string;
-  Lat: string; // Menggunakan string sesuai dengan data API
-  Long: string; // Menggunakan string sesuai dengan data API
-  Kota: string;
-  Provinsi: string;
-  Tipe: string;
-  Kategori: string;
-  UPT: string;
-  Last_latency: number | null;
-  Status: number | null;
-}
-
-// Tipe untuk marker
+// Type for marker
 interface Marker {
   position: [number, number];
   popup: string;
@@ -26,7 +11,7 @@ interface Marker {
   latency: number | null;
 }
 
-// Ikon untuk kategori Accelerograph
+// Icons for categories
 const getAccelerographIcon = (latency: number | null) => {
   if (latency === null) return L.icon({ iconUrl: '/sensor/accelero/tg_black.svg', iconSize: [10, 10], iconAnchor: [5, 10], popupAnchor: [1, -34] });
   if (latency < 2) return L.icon({ iconUrl: '/sensor/accelero/tg_green.svg', iconSize: [10, 10], iconAnchor: [5, 10], popupAnchor: [1, -34] });
@@ -37,7 +22,6 @@ const getAccelerographIcon = (latency: number | null) => {
   return L.icon({ iconUrl: '/sensor/accelero/tg_black.svg', iconSize: [10, 10], iconAnchor: [5, 10], popupAnchor: [1, -34] });
 };
 
-// Ikon untuk kategori Intensitymeter
 const getIntensitymeterIcon = (latency: number | null) => {
   if (latency === null) return L.icon({ iconUrl: '/sensor/intensity/s_black.svg', iconSize: [10, 10], iconAnchor: [5, 10], popupAnchor: [1, -34] });
   if (latency < 2) return L.icon({ iconUrl: '/sensor/intensity/s_green.svg', iconSize: [10, 10], iconAnchor: [5, 10], popupAnchor: [1, -34] });
@@ -45,7 +29,7 @@ const getIntensitymeterIcon = (latency: number | null) => {
   if (latency < 15) return L.icon({ iconUrl: '/sensor/intensity/s_orange.svg', iconSize: [10, 10], iconAnchor: [5, 10], popupAnchor: [1, -34] });
   if (latency < 60) return L.icon({ iconUrl: '/sensor/intensity/s_red.svg', iconSize: [10, 10], iconAnchor: [5, 10], popupAnchor: [1, -34] });
   if (latency < 900) return L.icon({ iconUrl: '/sensor/intensity/s_purple.svg', iconSize: [10, 10], iconAnchor: [5, 10], popupAnchor: [1, -34] });
-  return L.icon({ iconUrl: '/sensor/intensity/s_black.svg', iconSize: [10 , 10], iconAnchor: [5, 10], popupAnchor: [1, -34] });
+  return L.icon({ iconUrl: '/sensor/intensity/s_black.svg', iconSize: [10, 10], iconAnchor: [5, 10], popupAnchor: [1, -34] });
 };
 
 interface MapProps {
@@ -53,34 +37,25 @@ interface MapProps {
   zoom: number;
 }
 
-// Komponen Map
+// Map component
 const Map: React.FC<MapProps> = ({ center, zoom }) => {
+  const { sensors } = useSensorContext(); // Get sensors from context
   const [markers, setMarkers] = useState<Marker[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const fetchSensors = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/api/sensors');
-        const data: Sensor[] = await response.json();
+    if (sensors) {
+      const formattedMarkers: Marker[] = sensors.map((sensor) => ({
+        position: [parseFloat(sensor.Lat), parseFloat(sensor.Long)] as [number, number],
+        popup: `<strong>${sensor.Kode}</strong><br>${sensor.Tipe}<br>${sensor.Kota}, ${sensor.Provinsi}`,
+        category: sensor.Kategori,
+        latency: sensor.Last_latency, // Store Last_latency
+      }));
 
-        const formattedMarkers: Marker[] = data.map((sensor) => ({
-          position: [parseFloat(sensor.Lat), parseFloat(sensor.Long)] as [number, number],
-          popup: `<strong>${sensor.Kode}</strong><br>${sensor.Tipe}<br>${sensor.Kota}, ${sensor.Provinsi}`,
-          category: sensor.Kategori,
-          latency: sensor.Last_latency, // Menyimpan Last_latency
-        }));
-
-        setMarkers(formattedMarkers);
-      } catch (error) {
-        console.error('Error fetching sensors:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchSensors();
-  }, []);
+      setMarkers(formattedMarkers);
+      setLoading(false);
+    }
+  }, [sensors]); // Run effect when sensors change
 
   useEffect(() => {
     if (loading) return;

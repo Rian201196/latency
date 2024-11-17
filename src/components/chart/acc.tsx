@@ -1,24 +1,25 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import Chart from 'chart.js/auto';
+import { Chart } from 'chart.js';
+import { useSensorContext } from '../../pages/context/SensorContext'; // Import the context hook
 
 interface DataPoint {
   label: string;
   value: number;
 }
 
-// Definisi warna untuk setiap kategori
+// Define colors for each category
 const LATENCY_COLORS: { [key: string]: string } = {
-  't < 2s': '#00A651',     // Hijau (tercepat)
-  't < 5s': '#FFF200',     // Kuning
-  't < 15s': '#F7941D',    // Oranye
-  't < 1m': '#ED1C24',     // Merah
-  't < 15m': '#662D91',    // Ungu
-  'OFF': '#231F20'         // Hitam
+  't < 2s': '#00A651',     
+  't < 5s': '#FFF200',     
+  't < 15s': '#F7941D',   
+  't < 1m': '#ED1C24',     
+  't < 15m': '#662D91',   
+  'OFF': '#231F20'         
 };
 
-// Definisikan urutan label
+// Define the order of labels
 const LABEL_ORDER = ['t < 2s', 't < 5s', 't < 15s', 't < 1m', 't < 15m', 'OFF'];
 
 const categorizeLatency = (latency: number | null): string => {
@@ -34,41 +35,33 @@ const categorizeLatency = (latency: number | null): string => {
 const BarChart: React.FC = () => {
   const chartRef = useRef<HTMLCanvasElement | null>(null);
   const chartInstance = useRef<Chart | null>(null);
+  const { sensors } = useSensorContext(); // Get sensors from context
   const [dataPoints, setDataPoints] = useState<DataPoint[]>([]);
 
   useEffect(() => {
-    const fetchSensors = async () => {
-      try {
-        const response = await fetch('/api/sensors');
-        const data = await response.json();
+    if (sensors) {
+      // Filter only for Accelerograph category
+      const accelerographSensors = sensors.filter((sensor: any) => 
+        sensor.Kategori === 'Accelerograph'
+      );
 
-        // Filter hanya untuk Kategori Accelerograph
-        const accelerographSensors = data.filter((sensor: any) => 
-          sensor.Kategori === 'Accelerograph'
-        );
+      // Categorize last_latency for Accelerograph
+      const categorizedData: { [key: string]: number } = {};
+      
+      accelerographSensors.forEach((sensor: any) => {
+        const category = categorizeLatency(sensor.Last_latency);
+        categorizedData[category] = (categorizedData[category] || 0) + 1;
+      });
 
-        // Kategorisasi last_latency untuk Accelerograph
-        const categorizedData: { [key: string]: number } = {};
-        
-        accelerographSensors.forEach((sensor: any) => {
-          const category = categorizeLatency(sensor.Last_latency);
-          categorizedData[category] = (categorizedData[category] || 0) + 1;
-        });
+      // Convert to DataPoint array according to desired order
+      const formattedDataPoints: DataPoint[] = LABEL_ORDER.map(label => ({
+        label,
+        value: categorizedData[label] || 0, // Set value to 0 if no data
+      }));
 
-        // Konversi ke array DataPoint sesuai urutan yang diinginkan
-        const formattedDataPoints: DataPoint[] = LABEL_ORDER.map(label => ({
-          label,
-          value: categorizedData[label] || 0, // Jika tidak ada data, set value ke 0
-        }));
-
-        setDataPoints(formattedDataPoints);
-      } catch (error) {
-        console.error('Error fetching sensors:', error);
-      }
-    };
-
-    fetchSensors();
-  }, []);
+      setDataPoints(formattedDataPoints);
+    }
+  }, [sensors]); // Run effect when sensors change
 
   useEffect(() => {
     if (!chartRef.current) return;
@@ -99,18 +92,18 @@ const BarChart: React.FC = () => {
         maintainAspectRatio: false, 
         plugins: {
           legend: {
-            display: false, // Menonaktifkan legenda
+            display: false, // Disable legend
           },
           title: {
             display: true,
-            text: 'Latency Sensor Accelerograph '
+            text: 'Latency Sensor Accelerograph'
           }
         },
         scales: {
           y: {
             beginAtZero: true,
             ticks: {
-              stepSize: 10 // Jeda antar nilai
+              stepSize: 10 // Step size for ticks
             }
           }
         }

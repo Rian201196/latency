@@ -1,4 +1,6 @@
+// components/SensorTable.tsx
 import React, { useEffect, useState } from 'react';
+import { useSensorContext } from '../../pages/context/SensorContext'; // Import the context hook
 
 interface Sensor {
   sensor_id: number;
@@ -13,28 +15,12 @@ interface Sensor {
   UPT: string; 
   Last_latency: number | null; 
   Status: number | null; 
-  created_at: string; 
 }
 
 const SensorTable: React.FC = () => {
-  const [sensors, setSensors] = useState<Sensor[]>([]);
+  const { sensors } = useSensorContext(); // Get sensors from context
   const [searchTerm, setSearchTerm] = useState('');
   const [sortConfig, setSortConfig] = useState<{ key: keyof Sensor; direction: 'ascending' | 'descending' } | null>(null);
-
-  useEffect(() => {
-    const fetchSensors = async () => {
-      try {
-        const response = await fetch('/api/sensors');
-        const data = await response.json();
-        console.log(data); // Log data for debugging
-        setSensors(data);
-      } catch (error) {
-        console.error('Error fetching sensors:', error);
-      }
-    };
-
-    fetchSensors();
-  }, []);
 
   // Filter data based on search term
   const filteredSensors = sensors.filter(sensor =>
@@ -49,39 +35,38 @@ const SensorTable: React.FC = () => {
   const sortedSensors = React.useMemo(() => {
     let sortableSensors = [...filteredSensors];
     if (sortConfig !== null) {
-      sortableSensors.sort((a, b) => {
-        // Handle potential null or undefined values
-        const valueA = a[sortConfig.key];
-        const valueB = b[sortConfig.key];
-  
-        // If values are null or undefined, handle accordingly
-        if (valueA === null || valueA === undefined) return 1;
-        if (valueB === null || valueB === undefined) return -1;
-  
-        // For string comparisons
-        if (typeof valueA === 'string' && typeof valueB === 'string') {
-          const comparison = valueA.localeCompare(valueB);
-          return sortConfig.direction === 'ascending' ? comparison : -comparison;
-        }
-  
-        // For numeric comparisons
-        if (typeof valueA === 'number' && typeof valueB === 'number') {
-          return sortConfig.direction === 'ascending' 
-            ? valueA - valueB 
-            : valueB - valueA;
-        }
-  
-        // Fallback for other types
-        if (valueA < valueB) {
-          return sortConfig.direction === 'ascending' ? -1 : 1;
-        }
-        if (valueA > valueB) {
-          return sortConfig.direction === 'ascending' ? 1 : -1;
-        }
-  
-        return 0;
-      });
-    }
+    sortableSensors.sort((a, b) => {
+      const valueA = a[sortConfig.key] as string | number;
+      const valueB = b[sortConfig.key] as string | number; 
+
+      // Handle potential null or undefined values
+      if (valueA === null || valueA === undefined) return 1;
+      if (valueB === null || valueB === undefined) return -1;
+
+      // For string comparisons
+      if (typeof valueA === 'string' && typeof valueB === 'string') {
+        const comparison = valueA.localeCompare(valueB);
+        return sortConfig.direction === 'ascending' ? comparison : -comparison;
+      }
+
+      // For numeric comparisons
+      if (typeof valueA === 'number' && typeof valueB === 'number') {
+        return sortConfig.direction === 'ascending' 
+          ? valueA - valueB 
+          : valueB - valueA;
+      }
+
+      // Fallback for other types
+      if (valueA < valueB) {
+        return sortConfig.direction === 'ascending' ? -1 : 1;
+      }
+      if (valueA > valueB) {
+        return sortConfig.direction === 'ascending' ? 1 : -1;
+      }
+
+      return 0;
+    });
+  }
     return sortableSensors;
   }, [filteredSensors, sortConfig]);
 
@@ -110,7 +95,7 @@ const SensorTable: React.FC = () => {
               <th onClick={() => requestSort('sensor_id')} className="cursor-pointer border border-gray-300 p-2">ID</th>
               <th onClick={() => requestSort('Kode')} className="cursor-pointer border border-gray-300 p-2">Kode</th>
               <th onClick={() => requestSort('Nama')} className="cursor-pointer border border-gray-300 p-2">Nama</th>
-              <th onClick={() => requestSort('Provinsi')} className="cursor-pointer border border-gray-300 p-2">Provinsi</th>
+              <th onClick={() => requestSort('Provinsi')} className="cursor-pointer border border-gray-300 p-2 ">Provinsi</th>
               <th onClick={() => requestSort('Tipe')} className="cursor-pointer border border-gray-300 p-2">Tipe</th>
               <th onClick={() => requestSort('Last_latency')} className="cursor-pointer border border-gray-300 p-2">Latency</th>
             </tr>
@@ -118,7 +103,7 @@ const SensorTable: React.FC = () => {
           <tbody className="bg-white text-gray-800">
             {sortedSensors.length > 0 ? (
               sortedSensors.map(sensor => (
-                <tr key={ sensor.sensor_id} className="hover:bg-gray-100">
+                <tr key={sensor.sensor_id} className="hover:bg-gray-100">
                   <td className="border border-gray-300 p-2">{sensor.sensor_id}</td>
                   <td className="border border-gray-300 p-2">{sensor.Kode}</td>
                   <td className="border border-gray-300 p-2">{sensor.Nama}</td>

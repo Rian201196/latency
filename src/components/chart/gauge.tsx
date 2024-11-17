@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
+import { useSensorContext } from '../../pages/context/SensorContext'; // Import the context hook
 
 Chart.register(ArcElement, Tooltip, Legend);
 
@@ -14,26 +15,18 @@ const LATENCY_COLORS: { [key: string]: string } = {
 
 const GaugeChart: React.FC = () => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
+    const { sensors } = useSensorContext(); // Get sensors from context
     const [latencyData, setLatencyData] = useState<number[]>([]);
 
-    // Mengambil data sensor dari API
-    const fetchSensorData = async () => {
-        try {
-            const response = await fetch('http://localhost:3000/api/sensors');
-            const data = await response.json();
-
+    useEffect(() => {
+        if (sensors) {
             // Ambil Last_latency dari setiap sensor
-            const latencies = data.map((sensor: { Last_latency: number | null }) => sensor.Last_latency); 
+            const latencies = sensors.map((sensor: { Last_latency: number | null }) => sensor.Last_latency)
+                .filter((latency): latency is number => latency !== null); // Filter out null values
             setLatencyData(latencies);
             console.log('Latencies:', latencies); // Debugging: tampilkan nilai latencies
-        } catch (error) {
-            console.error('Error fetching sensor data:', error);
         }
-    };
-
-    useEffect(() => {
-        fetchSensorData();
-    }, []);
+    }, [sensors]);
 
     // Menghitung persentase untuk setiap kategori
     const calculatePercentages = (latencies: number[]) => {
@@ -125,7 +118,6 @@ const GaugeChart: React.FC = () => {
             top : '10%',
             width: '90%', 
             height: '80%',
-            // height: '350px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -146,7 +138,7 @@ const GaugeChart: React.FC = () => {
                     fontWeight: 'bold',
                     color: '#000'
                 }}>
-                    340
+                    {latencyData.length} {/* Display total number of sensors */}
                 </div>
                 <div style={{
                     fontSize: '20px',
